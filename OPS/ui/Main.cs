@@ -56,6 +56,7 @@ namespace OPS
 
         // 加载项目目录文件
         private void LoadProjectFile(int projectId) {
+            
             fileListView.View = View.Details;
             this.fileListView.Columns.Add("列标题1", 120, HorizontalAlignment.Left); //一步添加
             this.fileListView.Columns.Add("列标题2", 120, HorizontalAlignment.Left); //一步添加

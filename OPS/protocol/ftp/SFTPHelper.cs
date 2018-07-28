@@ -5,8 +5,9 @@ using System.Text;
 using Renci.SshNet;
 using System.Collections;
 using System.IO;
+using Renci.SshNet.Sftp;
 
-namespace OPS.utils
+namespace OPS.protocol
 {
 
     /// <summary>
@@ -157,45 +158,12 @@ namespace OPS.utils
         /// <param name="remotePath">远程目录</param>
         /// <param name="fileSuffix">文件后缀</param>
         /// <returns></returns>
-        public ArrayList GetFileList(string remotePath, string fileSuffix)
-        {
-            try
-            {
-                Connect();
-                var files = sftp.ListDirectory(remotePath);
-                Disconnect();
-                var objList = new ArrayList();
-                foreach (var file in files)
-                {
-                    string name = file.Name;
-                    if (name.Length > (fileSuffix.Length + 1) && fileSuffix == name.Substring(name.Length - fileSuffix.Length))
-                    {
-                        objList.Add(name);
-                    }
-                }
-                return objList;
-            }
-            catch (Exception ex)
-            {
-                // TxtLog.WriteTxt(CommonMethod.GetProgramName(), string.Format("SFTP文件列表获取失败，原因：{0}", ex.Message));
-                throw new Exception(string.Format("SFTP文件列表获取失败，原因：{0}", ex.Message));
-            }
-        }
-        #endregion
-
-        #region 获取SFTP文件列表
-        /// <summary>
-        /// 获取SFTP文件列表
-        /// </summary>
-        /// <param name="remotePath">远程目录</param>
-        /// <param name="fileSuffix">文件后缀</param>
-        /// <returns></returns>
         public ArrayList GetFileList(string remotePath)
         {
             try
             {
                 Connect();
-                var files = sftp.ListDirectory(remotePath);
+                IEnumerable<SftpFile> files = sftp.ListDirectory(remotePath);
                 Disconnect();
                 var objList = new ArrayList();
                 foreach (var file in files)

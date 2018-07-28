@@ -38,5 +38,15 @@ namespace OPS.service
 
             return groups;
         }
+
+        // 查询项目
+        public Project getProject(int projectId)
+        {
+            Project prj = projectDAO.findProject(projectId);
+            return prj;
+        }
+
+        // 获取项目日志
+
     }
 }

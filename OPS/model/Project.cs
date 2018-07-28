@@ -11,8 +11,12 @@ namespace OPS.model
         private int id;
         private string name;
         private int serverId;
-        private String deployPath;
+        private string deployPath;
+        private string logPath;
         private int groupId;
+
+        private Server server;
+
 
         public int Id {
             get { return id; }
@@ -41,6 +45,19 @@ namespace OPS.model
         {
             get { return groupId; }
             set { groupId = value; }
+        }
+
+        internal Server Server
+        {
+            get
+            {
+                return server;
+            }
+
+            set
+            {
+                server = value;
+            }
         }
     }
 }
