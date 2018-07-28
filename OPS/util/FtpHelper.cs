@@ -16,17 +16,17 @@ namespace OPS.utils
         /// <summary>
         /// Ftp服务器ip
         /// </summary>
-        public static string FtpServerIP = "127.0.0.1";
+        public static string FtpServerIP = "192.168.164.131";
         /// <summary>
         /// Ftp 指定用户名
         /// </summary>
-        public static string FtpUserID = "jxf";
+        public static string FtpUserID = "root";
         /// <summary>
         /// Ftp 指定用户密码
         /// </summary>
         public static string FtpPassword = "123456";
 
-        public static string ftpURI = "ftp://" + FtpServerIP + "/";
+        public static string ftpURI = "sftp://" + FtpServerIP + ":22/";
 
         #endregion
 

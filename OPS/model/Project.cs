@@ -37,6 +37,10 @@ namespace OPS.model
             set { deployPath = value; }
         }
 
-        public int GroupId { get => groupId; set => groupId = value; }
+        public int GroupId
+        {
+            get { return groupId; }
+            set { groupId = value; }
+        }
     }
 }
