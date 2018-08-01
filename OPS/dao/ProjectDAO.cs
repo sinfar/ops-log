@@ -56,11 +56,11 @@ namespace OPS.dao
         public Project findProject(int projectId)
         {
             string sql = "select " +
-                            "a.id, a.name, a.server_id, a.deploy_path, a.log_path, a.group_id " +
-                            "b.name server_name, b.ip, os_user, os_password " +
+                            "a.id, a.name, a.server_id, a.deploy_path, a.log_path, a.group_id, " +
+                            "b.id, b.name server_name, b.ip, os_user, os_password, b.sftp_port " +
                          "from op_project a " +
-                            "left join op_server b on b.id = a.server_id" + 
-                         "where a.id = :id";
+                            "left join op_server b on b.id = a.server_id " + 
+                         "where a.id = ?id";
 
             MySqlParameter param = new MySqlParameter("id", projectId);
 
@@ -73,14 +73,16 @@ namespace OPS.dao
                 prj.Name = (string)reader[1];
                 prj.ServerId = (int)reader[2];
                 prj.DeployPath = (string)reader[3];
-                prj.GroupId = (int)reader[4];
+                prj.LogPath = (string)reader[4];
+                prj.GroupId = (int)reader[5];
 
                 Server server = new Server();
-                server.Id = (int)reader[5];
-                server.Name = (string)reader[6];
-                server.Ip = (string)reader[7];
-                server.OsUser = (string)reader[8];
-                server.OsPassword = (string)reader[9];
+                server.Id = (int)reader[6];
+                server.Name = (string)reader[7];
+                server.Ip = (string)reader[8];
+                server.OsUser = (string)reader[9];
+                server.OsPassword = (string)reader[10];
+                server.SftpPort = (int)reader[11];
 
                 prj.Server = server;
 

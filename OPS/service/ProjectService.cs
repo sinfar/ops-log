@@ -1,5 +1,6 @@
 ﻿using OPS.dao;
 using OPS.model;
+using OPS.protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace OPS.service
     class ProjectService
     {
         private Projectservice projectDAO = new Projectservice();
+        private ServerService serverService = new ServerService();
 
         // 查询所有项目组
         public List<ProjectGroup> getProjectGroups()
@@ -39,14 +41,19 @@ namespace OPS.service
             return groups;
         }
 
-        // 查询项目
-        public Project getProject(int projectId)
+        // 查询项目日志
+        public List<FtpFile> getProjectLogFiles(int projectId)
         {
             Project prj = projectDAO.findProject(projectId);
-            return prj;
+            Server server = prj.Server;
+
+            SFtpClient ftp = serverService.connSftp(server);
+            List<FtpFile> logFiles = ftp.getFileList(prj.LogPath);
+
+            return logFiles;
         }
 
-        // 获取项目日志
+       
 
     }
 }

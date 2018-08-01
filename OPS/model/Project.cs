@@ -47,6 +47,8 @@ namespace OPS.model
             set { groupId = value; }
         }
 
+        public string LogPath { get => logPath; set => logPath = value; }
+
         internal Server Server
         {
             get

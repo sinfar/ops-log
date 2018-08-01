@@ -1,6 +1,9 @@
 ﻿using OPS.dao;
 using OPS.model;
+using OPS.protocol;
 using OPS.service;
+using OPS.util;
+using OPS.vo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,31 +58,40 @@ namespace OPS
         }
 
         // 加载项目目录文件
-        private void LoadProjectFile(int projectId) {
-            
+        private void LoadProjectFile(int projectId)
+        {
+            fileListView.Clear();
+            this.fileListView.BeginUpdate();
+
+            // 查询数据
+            List<FtpFile> files = projectService.getProjectLogFiles(projectId);
+            FileListVO fileList = new FileListVO(files);
+
+
+
             fileListView.View = View.Details;
-            this.fileListView.Columns.Add("列标题1", 120, HorizontalAlignment.Left); //一步添加
-            this.fileListView.Columns.Add("列标题2", 120, HorizontalAlignment.Left); //一步添加
-            this.fileListView.Columns.Add("列标题3", 120, HorizontalAlignment.Left); //一步添加
+            fileListView.FullRowSelect = true;
 
-            this.fileListView.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+            fileListView.LargeImageList = fileList.largeIconList;
+            fileListView.SmallImageList = fileList.smallIconList;
 
-            for (int i = 0; i < 10; i++)   //添加10行数据
+            this.fileListView.Columns.Add("文件名", 240, HorizontalAlignment.Left);
+            this.fileListView.Columns.Add("大小", 120, HorizontalAlignment.Right); 
+            this.fileListView.Columns.Add("修改时间", 120, HorizontalAlignment.Left); 
+
+            foreach (FileInfoVO info in fileList.list)
             {
-                ListViewItem lvi = new ListViewItem();
+                FileInfo f = info.fileInfo;
+                ListViewItem item = new ListViewItem();
+                item.ImageIndex = fileList.list.IndexOf(info);
+                item.Text = f.name;
+                item.SubItems.Add(f.isDirectory ? null: FileUtils.GetString(f.size));
+                item.SubItems.Add(f.lastWriteTime.ToString());
 
-                lvi.ImageIndex = i;     //通过与imageList绑定，显示imageList中第i项图标
-
-                lvi.Text = "subitem" + i;
-
-                lvi.SubItems.Add("第2列,第" + i + "行");
-
-                lvi.SubItems.Add("第3列,第" + i + "行");
-
-                this.fileListView.Items.Add(lvi);
+                this.fileListView.Items.Add(item);
             }
 
-            this.fileListView.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+            this.fileListView.EndUpdate();
 
         }
     }

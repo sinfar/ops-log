@@ -18,12 +18,12 @@ namespace OPS.protocol
         private string username;
         private string password;
 
-        public SFtpClient(string ip, int port, string username, string password) {
-            this.ip = ip;
+        public SFtpClient(string host, int port, string username, string password) {
+            this.ip = host;
             this.port = port;
             this.username = username;
             this.password = password;
-            sftp = new SftpClient(ip, port, username, password);
+            sftp = new SftpClient(host, port, username, password);
         }
 
         public void Connect()

@@ -27,9 +27,9 @@ namespace OPSTests.util
         [TestMethod]
         public void SFtpClientTest()
         {
-            SFtpClient ftp = new SFtpClient("192.168.164.131", 22, "root", "123456");
+            SFtpClient ftp = new SFtpClient("127.0.0.1", 22, "root", "123456");
             ftp.Connect();
-            List<FtpFile> files = ftp.getFileList("/data/logs/a");
+            List<FtpFile> files = ftp.getFileList("/");
             Console.WriteLine("file count:"+ files.ToArray().Length);
             foreach (FtpFile f in files) {
                 Console.WriteLine(f.fullname);
@@ -39,9 +39,9 @@ namespace OPSTests.util
         [TestMethod]
         public void SFtpClientTestDownload()
         {
-            SFtpClient ftp = new SFtpClient("192.168.164.131", 22, "root", "123456");
+            SFtpClient ftp = new SFtpClient("127.0.0.1", 22, "root", "123456");
             ftp.Connect();
-            List<FtpFile> files = ftp.getFileList("/data/logs/a");
+            List<FtpFile> files = ftp.getFileList("/logs/");
             Console.WriteLine("file count:" + files.ToArray().Length);
             foreach (FtpFile f in files)
             {
