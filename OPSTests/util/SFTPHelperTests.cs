@@ -15,8 +15,8 @@ namespace OPSTests.util
         [TestMethod]
         public void SFTPHelperTest()
         {
-            SFTPHelper sftp = new OPS.protocol.SFTPHelper("192.168.164.131", "22", "root", "123456");
-            ArrayList files = sftp.GetFileList("/data/logs");
+            SFTPHelper sftp = new OPS.protocol.SFTPHelper("127.0.0.1", "22", "root", "123456");
+            ArrayList files = sftp.GetFileList("/a/b");
             foreach (string s in files)
             {
              Console.WriteLine(s);

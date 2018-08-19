@@ -52,7 +52,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.fileListView);
             this.splitContainer1.Size = new System.Drawing.Size(942, 433);
-            this.splitContainer1.SplitterDistance = 213;
+            this.splitContainer1.SplitterDistance = 212;
             this.splitContainer1.TabIndex = 0;
             // 
             // projectTree
@@ -61,7 +61,7 @@
             this.projectTree.Location = new System.Drawing.Point(0, 0);
             this.projectTree.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.projectTree.Name = "projectTree";
-            this.projectTree.Size = new System.Drawing.Size(213, 433);
+            this.projectTree.Size = new System.Drawing.Size(212, 433);
             this.projectTree.TabIndex = 0;
             this.projectTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterSelect);
             // 
@@ -69,11 +69,11 @@
             // 
             this.fileListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileListView.Location = new System.Drawing.Point(0, 0);
-            this.fileListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fileListView.Name = "fileListView";
-            this.fileListView.Size = new System.Drawing.Size(725, 433);
+            this.fileListView.Size = new System.Drawing.Size(726, 433);
             this.fileListView.TabIndex = 0;
             this.fileListView.UseCompatibleStateImageBehavior = false;
+            this.fileListView.DoubleClick += new System.EventHandler(this.ItemDoubleClick);
             // 
             // Form1
             // 

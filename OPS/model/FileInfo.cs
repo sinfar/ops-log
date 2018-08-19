@@ -18,7 +18,7 @@ namespace OPS.model
         public FileInfo(FtpFile file)
         {
             this.name = file.name;
-            this.fullname = file.name;
+            this.fullname = file.fullname;
             this.size = file.size;
             this.lastWriteTime = file.lastWriteTime;
             this.isDirectory = file.isDirectory;

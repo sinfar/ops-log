@@ -42,8 +42,6 @@ namespace OPS.vo
             this.fileInfo = new model.FileInfo(file);
             this.largeIcon = GetSystemIcon.GetIconByFileType(Path.GetExtension(file.name), true);
             this.smallIcon = GetSystemIcon.GetIconByFileType(Path.GetExtension(file.name), false);
-
-            Console.WriteLine(file.name + "------->" + largeIcon + "," + smallIcon);
         }
     }
 

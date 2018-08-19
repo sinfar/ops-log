@@ -76,6 +76,7 @@
     <Compile Include="model\Project.cs" />
     <Compile Include="model\ProjectGroup.cs" />
     <Compile Include="protocol\ftp\DownloadAsyncResult.cs" />
+    <Compile Include="protocol\ftp\FtpException.cs" />
     <Compile Include="protocol\ftp\FtpFile.cs" />
     <Compile Include="protocol\ftp\IFtpClient.cs" />
     <Compile Include="protocol\ftp\SFtpClient.cs" />
@@ -121,9 +122,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="pro\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>

@@ -41,6 +41,13 @@ namespace OPS.service
             return groups;
         }
 
+        // 获取项目
+        public Project getProject(int projectId)
+        {
+            Project prj = projectDAO.findProject(projectId);
+            return prj;
+        }
+
         // 查询项目日志
         public List<FtpFile> getProjectLogFiles(int projectId)
         {
@@ -53,6 +60,13 @@ namespace OPS.service
             return logFiles;
         }
 
+        // 获取项目所属的服务器
+        public Server getProjectServer(int projectId)
+        {
+            Project prj = projectDAO.findProject(projectId);
+            Server server = prj.Server;
+            return server;
+        }
        
 
     }

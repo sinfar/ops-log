@@ -1,4 +1,5 @@
-﻿using Renci.SshNet;
+﻿using OPS.protocol.ftp;
+using Renci.SshNet;
 using Renci.SshNet.Sftp;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,15 @@ namespace OPS.protocol
         {
             if (sftp != null)
             {
-                sftp.Connect();
+                try
+                {
+                    sftp.Connect();
+                }
+                catch(Exception e)
+                {
+                    throw new FtpException(e.Message, e);
+                }
+                
             }
             
         }
@@ -57,6 +66,8 @@ namespace OPS.protocol
             List<FtpFile> fileList = new List<FtpFile>();
             foreach(SftpFile f in files)
             {
+                if (f.IsDirectory && f.Name.Equals(".")) continue;
+
                 FtpFile ftpFile = new FtpFile();
                 ftpFile.name = f.Name;
                 ftpFile.fullname = f.FullName;
